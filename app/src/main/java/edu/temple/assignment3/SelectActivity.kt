@@ -1,18 +1,30 @@
 package edu.temple.assignment3
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ImageActivity : AppCompatActivity() {
+class SelectActivity: AppCompatActivity() {
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        if(it.resultCode == RESULT_OK) {
+            // do something when intent of launcher returns data
+            // a data object is returned
+            Log.d("Response data", it.data?.getStringExtra("activity is happening").toString())
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.select_activity)
 
+        supportActionBar?.title = "Test"
 
         val signArray = getImages()
 
@@ -30,9 +42,20 @@ class ImageActivity : AppCompatActivity() {
             val itemPosition = signRecyclerView.getChildAdapterPosition(it)
             signImageView.setImageResource(signArray[itemPosition].resourceId)
             signTextView.text = signArray[itemPosition].description
+
+            val launchIntent = Intent(this, DisplayActivity::class.java) //created a kotlin class out of a java class, this will be repeated regularly
+            launchIntent.putExtra("signItem", signArray[itemPosition])
+
+            launcher.launch(launchIntent)
+            // we expect data to come back from launchIntent, check logcat
         }
 
         signRecyclerView.adapter = ImageAdapter(signArray, onClickListener)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        outState.putAll(outPersistentState)
     }
 
     private fun getImages(): Array<Item> {

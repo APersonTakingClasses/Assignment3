@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Assignment3</string>
+    <string name="app_name">ASL App</string>
     <string name="ABC">The American Sign Language Alphabet</string>
     <string name="generic_description">A hand sign for ASL</string>
 </resources>
