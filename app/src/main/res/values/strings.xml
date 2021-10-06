@@ -2,4 +2,6 @@
     <string name="app_name">ASL App</string>
     <string name="ABC">The American Sign Language Alphabet</string>
     <string name="generic_description">A hand sign for ASL</string>
+    <string name="select_activity">Activity 1 - Select a sign</string>
+    <string name="display_activity">Activity 2 - Sign close-up</string>
 </resources>

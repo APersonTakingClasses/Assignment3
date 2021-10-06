@@ -24,12 +24,12 @@ class SelectActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.select_activity)
 
-        supportActionBar?.title = "Test"
+        supportActionBar?.title = getString(R.string.select_activity)
 
         val signArray = getImages()
 
         val signRecyclerView = findViewById<RecyclerView>(R.id.signRecyclerView)
-        val signImageView = findViewById<ImageView>(R.id.signImageView)
+        //val signImageView = findViewById<ImageView>(R.id.signImageView)
         val signTextView = findViewById<TextView>(R.id.signTextView)
 
         signRecyclerView.layoutManager = GridLayoutManager(this, 3)
@@ -40,7 +40,7 @@ class SelectActivity: AppCompatActivity() {
         // to have access to the activity's members
         val onClickListener = View.OnClickListener {
             val itemPosition = signRecyclerView.getChildAdapterPosition(it)
-            signImageView.setImageResource(signArray[itemPosition].resourceId)
+            //signImageView.setImageResource(signArray[itemPosition].resourceId)
             signTextView.text = signArray[itemPosition].description
 
             val launchIntent = Intent(this, DisplayActivity::class.java) //created a kotlin class out of a java class, this will be repeated regularly
