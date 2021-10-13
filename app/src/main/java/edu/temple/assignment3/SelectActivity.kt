@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+
 class SelectActivity: AppCompatActivity() {
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == RESULT_OK) {
@@ -20,6 +21,7 @@ class SelectActivity: AppCompatActivity() {
             Log.d("Response data", it.data?.getStringExtra("activity is happening").toString())
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.select_activity)
@@ -59,33 +61,34 @@ class SelectActivity: AppCompatActivity() {
     }
 
     private fun getImages(): Array<Item> {
+        val myArray: Array<String> = this.resources.getStringArray(R.array.item_Array)
         return arrayOf(
-            Item( "ASL Letter A", R.drawable.asl_a),
-            Item( "ASL Letter B", R.drawable.asl_b),
-            Item( "ASL Letter C", R.drawable.asl_c),
-            Item( "ASL Letter D", R.drawable.asl_d),
-            Item( "ASL Letter E", R.drawable.asl_e),
-            Item( "ASL Letter F", R.drawable.asl_f),
-            Item( "ASL Letter G", R.drawable.asl_g),
-            Item( "ASL Letter H", R.drawable.asl_h),
-            Item( "ASL Letter I", R.drawable.asl_i),
-            Item( "ASL Letter J", R.drawable.asl_j),
-            Item( "ASL Letter K", R.drawable.asl_k),
-            Item( "ASL Letter L", R.drawable.asl_l),
-            Item( "ASL Letter M", R.drawable.asl_m),
-            Item( "ASL Letter N", R.drawable.asl_n),
-            Item( "ASL Letter O", R.drawable.asl_o),
-            Item( "ASL Letter P", R.drawable.asl_p),
-            Item( "ASL Letter Q", R.drawable.asl_q),
-            Item( "ASL Letter R", R.drawable.asl_r),
-            Item( "ASL Letter S", R.drawable.asl_s),
-            Item( "ASL Letter T", R.drawable.asl_t),
-            Item( "ASL Letter U", R.drawable.asl_u),
-            Item( "ASL Letter V", R.drawable.asl_v),
-            Item( "ASL Letter W", R.drawable.asl_w),
-            Item( "ASL Letter X", R.drawable.asl_x),
-            Item( "ASL Letter Y", R.drawable.asl_y),
-            Item( "ASL Letter Z", R.drawable.asl_z),
+            Item( myArray[0], R.drawable.asl_a),
+            Item( myArray[1], R.drawable.asl_b),
+            Item( myArray[2], R.drawable.asl_c),
+            Item( myArray[3], R.drawable.asl_d),
+            Item( myArray[4], R.drawable.asl_e),
+            Item( myArray[5], R.drawable.asl_f),
+            Item( myArray[6], R.drawable.asl_g),
+            Item( myArray[7], R.drawable.asl_h),
+            Item( myArray[8], R.drawable.asl_i),
+            Item( myArray[9], R.drawable.asl_j),
+            Item( myArray[10], R.drawable.asl_k),
+            Item( myArray[11], R.drawable.asl_l),
+            Item( myArray[12], R.drawable.asl_m),
+            Item( myArray[13], R.drawable.asl_n),
+            Item( myArray[14], R.drawable.asl_o),
+            Item( myArray[15], R.drawable.asl_p),
+            Item( myArray[16], R.drawable.asl_q),
+            Item( myArray[17], R.drawable.asl_r),
+            Item( myArray[18], R.drawable.asl_s),
+            Item( myArray[19], R.drawable.asl_t),
+            Item( myArray[20], R.drawable.asl_u),
+            Item( myArray[21], R.drawable.asl_v),
+            Item( myArray[22], R.drawable.asl_w),
+            Item( myArray[23], R.drawable.asl_x),
+            Item( myArray[24], R.drawable.asl_y),
+            Item( myArray[25], R.drawable.asl_z),
         )
     }
 }

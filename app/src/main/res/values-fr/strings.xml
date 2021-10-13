@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Application ASL</string>
+    <string name="greeting">Cliquez sur l\'image ci-dessous pour voir</string>
+    <string name="generic_description">Un signe de la main pour l\'ASL</string>
+    <string name="select_activity">Sélectionnez un signe</string>
+    <string name="display_activity">Gros plan de signe</string>
+
+    <string-array name="item_Array">
+        <item>ASL lettre A</item>
+        <item>ASL lettre B</item>
+        <item>ASL lettre C</item>
+        <item>ASL lettre D</item>
+        <item>ASL lettre E</item>
+        <item>ASL lettre F</item>
+        <item>ASL lettre G</item>
+        <item>ASL lettre H</item>
+        <item>ASL lettre I</item>
+        <item>ASL lettre J</item>
+        <item>ASL lettre K</item>
+        <item>ASL lettre L</item>
+        <item>ASL lettre M</item>
+        <item>ASL lettre N</item>
+        <item>ASL lettre O</item>
+        <item>ASL lettre P</item>
+        <item>ASL lettre Q</item>
+        <item>ASL lettre R</item>
+        <item>ASL lettre S</item>
+        <item>ASL lettre T</item>
+        <item>ASL lettre U</item>
+        <item>ASL lettre V</item>
+        <item>ASL lettre W</item>
+        <item>ASL lettre X</item>
+        <item>ASL lettre Y</item>
+        <item>ASL lettre Z</item>
+    </string-array>
+</resources>
