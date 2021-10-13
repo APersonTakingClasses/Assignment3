@@ -43,7 +43,7 @@ class SelectActivity: AppCompatActivity() {
         val onClickListener = View.OnClickListener {
             val itemPosition = signRecyclerView.getChildAdapterPosition(it)
             //signImageView.setImageResource(signArray[itemPosition].resourceId)
-            signTextView.text = signArray[itemPosition].description
+            //signTextView.text = signArray[itemPosition].description
 
             val launchIntent = Intent(this, DisplayActivity::class.java) //created a kotlin class out of a java class, this will be repeated regularly
             launchIntent.putExtra("signItem", signArray[itemPosition])
