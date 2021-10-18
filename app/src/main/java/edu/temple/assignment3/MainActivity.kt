@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class SelectActivity: AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == RESULT_OK) {
             // do something when intent of launcher returns data
@@ -24,40 +23,19 @@ class SelectActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.select_activity)
+        setContentView(R.layout.main_activity)
 
         supportActionBar?.title = getString(R.string.select_activity)
 
         val signArray = getImages()
 
-        val signRecyclerView = findViewById<RecyclerView>(R.id.signRecyclerView)
-        //val signImageView = findViewById<ImageView>(R.id.signImageView)
         val signTextView = findViewById<TextView>(R.id.signTextView)
 
-        signRecyclerView.layoutManager = GridLayoutManager(this, 3)
+        supportFragmentManager.beginTransaction()
+            .add(R.id.selectionContainer, SelectionFragment() )
+            .add(R.id.displayContainer, DisplayFragment() )
+            .commit()
 
-        // View.OnClickListener is created in the activity
-        // and then passed to adapter
-        // This allows the onClick() callback
-        // to have access to the activity's members
-        val onClickListener = View.OnClickListener {
-            val itemPosition = signRecyclerView.getChildAdapterPosition(it)
-            //signImageView.setImageResource(signArray[itemPosition].resourceId)
-            //signTextView.text = signArray[itemPosition].description
-
-            val launchIntent = Intent(this, DisplayActivity::class.java) //created a kotlin class out of a java class, this will be repeated regularly
-            launchIntent.putExtra("signItem", signArray[itemPosition])
-
-            launcher.launch(launchIntent)
-            // we expect data to come back from launchIntent, check logcat
-        }
-
-        signRecyclerView.adapter = ImageAdapter(signArray, onClickListener)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        outState.putAll(outPersistentState)
     }
 
     private fun getImages(): Array<Item> {
