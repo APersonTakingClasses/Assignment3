@@ -1,18 +1,16 @@
 package edu.temple.assignment3
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 
 
-class MainActivity: AppCompatActivity() {
+class MainActivity: AppCompatActivity(), SelectionFragment.Interface1 {
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == RESULT_OK) {
             // do something when intent of launcher returns data
@@ -32,10 +30,20 @@ class MainActivity: AppCompatActivity() {
         val signTextView = findViewById<TextView>(R.id.signTextView)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.selectionContainer, SelectionFragment() )
-            .add(R.id.displayContainer, DisplayFragment() )
+            .add(R.id.selectionContainer, SelectionFragment.getInstance(signArray))
+            .add(R.id.displayContainer, DisplayFragment())
             .commit()
 
+        ViewModelProvider(this)
+            .get(ItemViewModel::class.java)
+            .getItemImage()
+            .observe(this, {
+                if(findViewById<View>(R.id.displayContainer) == null)
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.displayContainer, DisplayFragment())
+                        .addToBackStack(null)
+                        .commit()
+            })
     }
 
     private fun getImages(): Array<Item> {
@@ -68,5 +76,9 @@ class MainActivity: AppCompatActivity() {
             Item( myArray[24], R.drawable.asl_y),
             Item( myArray[25], R.drawable.asl_z),
         )
+    }
+
+    override fun itemSelected(_index:Int, _array:Array<Item>) : Item{
+        return _array[_index]
     }
 }
